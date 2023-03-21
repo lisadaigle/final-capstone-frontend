@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { PlantsIndex } from "./PlantsIndex";
+import { Routes, Route } from "react-router-dom";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { LogoutLink } from "./LogoutLink";
+import { HomePage } from "./HomePage";
 
 export function Content() {
   const [plants, setPlants] = useState([]);
@@ -17,7 +22,13 @@ export function Content() {
 
   return (
     <div className="container">
-      <PlantsIndex plants={plants} />
+      <Routes>
+        <Route path="logout" element={<LogoutLink />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/plants" element={<PlantsIndex plants={plants} />} />
+      </Routes>
     </div>
   );
 }

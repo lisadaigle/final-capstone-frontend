@@ -1,19 +1,9 @@
-// export function Header() {
-//   return (
-//     <header>
-//       <nav>
-//         <a href="#">Home</a> | <a href="#">Link</a>
-//       </nav>
-//     </header>
-//   );
-// }
-
 export function Header() {
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="#" style={{ fontSize: "36px", fontWeight: "bold" }}>
             TOPIARY
           </a>
           <button
@@ -41,8 +31,8 @@ export function Header() {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="/products/new">
-                  CREATE
+                <a className="nav-link" href="/plants">
+                  PLANTS
                 </a>
               </li>
 
@@ -62,6 +52,7 @@ export function Header() {
                 </a>
               </li>
             </ul>
+
             <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
               <button className="btn btn-outline-success" type="submit">
