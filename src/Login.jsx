@@ -6,11 +6,14 @@ if (jwt) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 }
 
-export function Login() {
+export function Login(props) {
   const [errors, setErrors] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Submitting login form"); //this is new
     setErrors([]);
     const params = new FormData(event.target);
     axios
@@ -19,8 +22,10 @@ export function Login() {
         console.log(response.data);
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
-        event.target.reset();
-        window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
+        // props.setLoggedIn(true);
+        // event.target.reset();
+        // setMessage("Welcome");
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error.response);
@@ -28,23 +33,38 @@ export function Login() {
       });
   };
 
+  // this is new
+
   return (
     <div id="login">
-      <h1>Login</h1>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
+      {loggedIn ? (
         <div>
-          Email: <input name="email" type="email" />
+          <h1>You are logged in!</h1>
+          <button onClick={() => setLoggedIn(false)}>Logout</button>
+          <button>Account Settings</button>
         </div>
-        <div>
-          Password: <input name="password" type="password" />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      ) : (
+        <>
+          <h1>Login</h1>
+          {message && <p>{message}</p>}
+          <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+          <form onSubmit={handleSubmit}>
+            <div>
+              Email: <input name="email" type="email" />
+            </div>
+            <div>
+              Password: <input name="password" type="password" />
+            </div>
+            <button type="submit">Login</button>
+          </form>
+        </>
+      )}
     </div>
   );
 }
+
+// this is new
