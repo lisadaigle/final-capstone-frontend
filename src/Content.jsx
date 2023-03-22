@@ -7,6 +7,7 @@ import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import { HomePage } from "./HomePage";
 import { MyGarden } from "./MyGarden";
+import { Welcome } from "./Welcome";
 
 export function Content() {
   const [plants, setPlants] = useState([]);
@@ -30,10 +31,10 @@ export function Content() {
         <Route path="logout" element={<LogoutLink />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mygarden" element={<MyGarden />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/mygarden" element={<MyGarden />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<HomePage />} />
-        {/* <Route path="/plants" element={<PlantsIndex plants={plants} />} /> */}
+        <Route path="/" element={<Welcome />} />
+        <Route path="/hello" element={<HomePage />} />
         <Route path="/plants" element={<PlantsIndex plants={plants} />} />
       </Routes>
     </div>

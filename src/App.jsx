@@ -7,11 +7,13 @@ import { LogoutLink } from "./LogoutLink";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
+  const loggedIn = localStorage.jwt !== undefined;
+
   return (
     <div>
       <BrowserRouter>
         <Header />
-        <Content />
+        <Content loggedIn={loggedIn} />
 
         <Footer />
       </BrowserRouter>

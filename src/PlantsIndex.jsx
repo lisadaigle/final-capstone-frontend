@@ -4,31 +4,32 @@ import axios from "axios";
 export function PlantsIndex(props) {
   const [searchFilter, setSearchFilter] = useState("");
 
-  ///this is new
+  const loggedIn = localStorage.jwt !== undefined;
 
   const onSavePlantToGarden = (plant) => {
-    if (!props.loggedIn) {
+    if (!loggedIn) {
       alert("You must be logged in to save plants to your garden.");
-      return;
+    } else {
+      alert("You are logged in.");
+      // add logic to save plant to user's garden
     }
-
-    axios
-      .post("/user_plants", { plant_id: plant.id })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("Plant saved to garden.");
-        } else {
-          alert("Failed to save plant to garden.");
-        }
-        setUserPlants([...userPlants, response.data]);
-      })
-      .catch((error) => {
-        alert("Failed to save plant to garden.");
-        console.log(error);
-      });
   };
 
-  ////this is new
+  //   axios
+  //     .post("/user_plants", { plant_id: plant.id })
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         alert("Plant saved to garden.");
+  //       } else {
+  //         alert("Failed to save plant to garden.");
+  //       }
+  //       setUserPlants([...userPlants, response.data]);
+  //     })
+  //     .catch((error) => {
+  //       alert("Failed to save plant to garden.");
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div id="plants-index">
@@ -47,11 +48,8 @@ export function PlantsIndex(props) {
         .map((plant) => (
           <div key={plant.id}>
             <h2>{plant.name}</h2>
-            {/* <img src={plant.images[0].url} alt="" /> */}
             <p>Description: {plant.description}</p>
             <h2>Amount of Sun: {plant.amount_of_sun}</h2>
-            {/* <button onClick={() => props.onShowPlant(plant)}>SAVE TO MY GARDEN</button> */}
-
             <button onClick={() => onSavePlantToGarden(plant)}>SAVE TO MY GARDEN</button>
           </div>
         ))}

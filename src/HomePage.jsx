@@ -39,10 +39,10 @@ export function HomePage() {
           frameborder="0"
           scrolling="no"
         ></iframe>
-        <img
+        {/* <img
           src="https://www.samisachaflowers.com/media/Red-Anemones.jpeg"
           style={{ width: "600px", height: "auto" }}
-        />
+        /> */}
       </div>
     </div>
   );

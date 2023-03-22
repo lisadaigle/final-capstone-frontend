@@ -6,7 +6,7 @@ export function Header() {
     <header>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#" style={{ fontSize: "36px", fontWeight: "bold" }}>
+          <a className="navbar-brand" href="/" style={{ fontSize: "36px", fontWeight: "bold" }}>
             TRELLIS
           </a>
           <button
@@ -27,11 +27,11 @@ export function Header() {
                   HOME
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="/mygarden">
                   MY GARDEN
                 </a>
-              </li>
+              </li> */}
 
               <li className="nav-item">
                 <a className="nav-link" href="/plants">
@@ -52,9 +52,16 @@ export function Header() {
                   </li>
                 </>
               ) : (
-                <li className="nav-d-flex">
-                  <LogoutLink />
-                </li>
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/mygarden">
+                      MY GARDEN
+                    </a>
+                  </li>
+                  <li className="nav-d-flex">
+                    <LogoutLink />
+                  </li>
+                </>
               )}
             </ul>
           </div>

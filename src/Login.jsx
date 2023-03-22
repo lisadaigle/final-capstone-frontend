@@ -25,7 +25,7 @@ export function Login(props) {
         // props.setLoggedIn(true);
         // event.target.reset();
         // setMessage("Welcome");
-        window.location.href = "/";
+        window.location.href = "/hello";
       })
       .catch((error) => {
         console.log(error.response);
