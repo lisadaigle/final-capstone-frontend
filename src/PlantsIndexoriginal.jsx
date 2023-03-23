@@ -9,24 +9,23 @@ export function PlantsIndex(props) {
   const onSavePlantToGarden = (plant) => {
     if (!loggedIn) {
       alert("You must be logged in to save plants to your garden.");
-    } else {
-      const data = {
-        plant_id: plant.id,
-        name: plant.name,
-        description: plant.description,
-        amount_of_sun: plant.amount_of_sun,
-        user_id: localStorage.user_id,
-      };
-      axios
-        .post("http://localhost:3000/carted_plants.json", data)
-        .then((response) => {
-          alert("Plant saved to your garden!");
-        })
-        .catch((error) => {
-          alert("Failed to save plant to your garden.");
-          console.log(error);
-        });
     }
+
+    const data = {
+      plant_id: plant.id,
+      name: plant.name,
+      description: plant.description,
+      amount_of_sun: plant.amount_of_sun,
+    };
+    axios
+      .post("http://localhost:3000/user_plants.json", data)
+      .then((response) => {
+        alert("Plant saved to your garden!");
+      })
+      .catch((error) => {
+        alert("Failed to save plant to your garden.");
+        console.log(error);
+      });
   };
 
   return (

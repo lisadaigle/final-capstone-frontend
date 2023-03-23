@@ -22,7 +22,6 @@ export function Login(props) {
         console.log(response.data);
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
-        localStorage.setItem("user_id", response.data.user_id); ///added this
         // props.setLoggedIn(true);
         // event.target.reset();
         // setMessage("Welcome");

@@ -27,11 +27,6 @@ export function Header() {
                   HOME
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="/mygarden">
-                  MY GARDEN
-                </a>
-              </li> */}
 
               <li className="nav-item">
                 <a className="nav-link" href="/plants">

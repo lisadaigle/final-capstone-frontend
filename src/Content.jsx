@@ -11,9 +11,7 @@ import { Welcome } from "./Welcome";
 
 export function Content() {
   const [plants, setPlants] = useState([]);
-  // this is new
-  // const [loggedIn, setLoggedIn] = useState(false);
-  // // this is new
+  const [gardenPlants, setGardenPlants] = useState([]); // this is new
 
   const handleIndexPlants = () => {
     console.log("handleIndexPlants");
@@ -23,14 +21,27 @@ export function Content() {
     });
   };
 
+  const handleGardenPlants = () => {
+    console.log("handleGardenPlants");
+    axios.get("http://localhost:3000/carted_plants.json").then((response) => {
+      console.log(response.data);
+      setGardenPlants(response.data);
+    }); ///this is new
+  };
+
   useEffect(handleIndexPlants, []);
+
+  useEffect(() => {
+    handleIndexPlants();
+    handleGardenPlants();
+  }, []); //this is new
 
   return (
     <div className="container">
       <Routes>
         <Route path="logout" element={<LogoutLink />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/mygarden" element={<MyGarden />} />
+        <Route path="/mygarden" element={<MyGarden gardenPlants={gardenPlants} />} />
         <Route path="/mygarden" element={<MyGarden />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Welcome />} />
