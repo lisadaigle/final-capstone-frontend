@@ -30,7 +30,7 @@ export function Header() {
 
               <li className="nav-item">
                 <a className="nav-link" href="/plants">
-                  PLANTS
+                  PLANT REPOSITORY
                 </a>
               </li>
               {localStorage.jwt === undefined ? (
@@ -53,6 +53,12 @@ export function Header() {
                       MY GARDEN
                     </a>
                   </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/hello">
+                      SCHEDULE
+                    </a>
+                  </li>
+
                   <li className="nav-d-flex">
                     <LogoutLink />
                   </li>

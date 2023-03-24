@@ -15,6 +15,7 @@ export function PlantsIndex(props) {
         name: plant.name,
         description: plant.description,
         amount_of_sun: plant.amount_of_sun,
+        days_to_water: plant.days_to_water,
         user_id: localStorage.user_id,
       };
       axios
