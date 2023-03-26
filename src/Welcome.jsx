@@ -25,7 +25,6 @@ export function Welcome() {
       </h1>
       <div style={{ position: "center", alignSelf: "center" }}>
         <img
-          // src="https://www.samisachaflowers.com/media/Red-Anemones.jpeg"
           src="https://cdn.shopify.com/s/files/1/0045/5340/8576/articles/Living_Room_Up.jpg?v=1624134760"
           style={{ width: "1000px", height: "auto" }}
         />

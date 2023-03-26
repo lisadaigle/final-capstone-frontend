@@ -30,10 +30,10 @@ export function MyGarden(props) {
       {props.gardenPlants.map((gardenPlant) => (
         <div key={gardenPlant.id}>
           <h2>{gardenPlant.name}</h2>
-          <p>Description: {gardenPlant.description}</p>
+          {/* <p>Description: {gardenPlant.description}</p> */}
           <img src={gardenPlant.image_url} alt={gardenPlant.name} style={{ width: "200px", height: "auto" }} />
           <h2>Amount of Sun: {gardenPlant.amount_of_sun}</h2>
-          <h2>Days to Water: {gardenPlant.days_to_water} </h2>
+          <h2>Watering Interval (days): {gardenPlant.days_to_water} </h2>
           <form onSubmit={(e) => handleSubmit(e, gardenPlant)}>
             <label>
               Last watered:

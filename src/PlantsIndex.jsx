@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export function PlantsIndex(props) {
-  const [searchFilter, setSearchFilter] = useState("");
+  const [searchFilter, setNameSearchFilter] = useState("");
 
   const loggedIn = localStorage.jwt !== undefined;
 
@@ -33,19 +33,30 @@ export function PlantsIndex(props) {
 
   return (
     <div
-      id="plants-index"
+      className="plants-index-container"
       style={{
         display: "flex",
+        flexDirection: "column",
+        gap: "20px",
         justifyContent: "flex-end",
         alignItems: "flex-start",
-        height: "100vh",
         padding: "20px",
         backgroundColor: "#e6ffe6",
+        overflowY: "auto",
       }}
     >
       <h1>All Plants</h1>
-      Search:{" "}
-      <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} list="titles" />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <span style={{ fontSize: "20px", marginRight: "10px" }}>Search by name:</span>
+        <input
+          type="text"
+          value={searchFilter}
+          onChange={(event) => setNameSearchFilter(event.target.value)}
+          list="titles"
+          style={{ borderBottom: "2px solid black", fontSize: "16px" }}
+        />
+      </div>
+
       <datalist id="titles">
         <div></div>
         {props.plants.map((plant) => (
@@ -54,17 +65,30 @@ export function PlantsIndex(props) {
       </datalist>
       {props.plants
         .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
+        .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
+        .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
         .map((plant) => (
           <div key={plant.id}>
-            <h2>{plant.name}</h2>
-            <p>Description: {plant.description}</p>
-            <img src={plant.image_url} alt={plant.name} style={{ width: "200px", height: "auto" }} />
-            <h2>Amount of Sun: {plant.amount_of_sun}</h2>
-            <h2>Watering Interval: {plant.days_to_water} </h2>
+            <h2 style={{ textAlign: "center", fontWeight: "bold" }}>{plant.name}</h2>
+            <p> {plant.description}</p>
+
+            <h4>Amount of Sun: {plant.amount_of_sun}</h4>
+            <h4>Watering Interval (days): {plant.days_to_water} </h4>
+            <img
+              src={plant.image_url}
+              alt={plant.name}
+              style={{ width: "300px", height: "auto", display: "block", margin: "auto" }}
+            />
+
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <button onClick={() => onSavePlantToGarden(plant)}>SAVE TO MY GARDEN</button>
+              <p></p>
+              <p></p>
+              <button className="save-button" onClick={() => onSavePlantToGarden(plant)}>
+                SAVE TO MY GARDEN
+              </button>
 
               <a
+                className="shop-link"
                 href={`https://www.thesill.com/search?q=${encodeURIComponent(plant.name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -74,6 +98,7 @@ export function PlantsIndex(props) {
                   color: "white",
                   padding: "10px 20px",
                   borderRadius: "4px",
+                  textAlign: "center",
                 }}
               >
                 SHOP

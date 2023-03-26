@@ -36,15 +36,17 @@ export function PlantsIndex(props) {
       id="plants-index"
       style={{
         display: "flex",
+
         justifyContent: "flex-end",
         alignItems: "flex-start",
         height: "100vh",
         padding: "20px",
         backgroundColor: "#e6ffe6",
+        overflowY: "scroll",
       }}
     >
       <h1>All Plants</h1>
-      Search:{" "}
+      Search by name:{" "}
       <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} list="titles" />
       <datalist id="titles">
         <div></div>
@@ -54,31 +56,33 @@ export function PlantsIndex(props) {
       </datalist>
       {props.plants
         .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
-
+        .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
+        .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
         .map((plant) => (
           <div key={plant.id}>
             <h2>{plant.name}</h2>
             <p>Description: {plant.description}</p>
             <img src={plant.image_url} alt={plant.name} style={{ width: "200px", height: "auto" }} />
-
             <h2>Amount of Sun: {plant.amount_of_sun}</h2>
             <h2>Watering Interval: {plant.days_to_water} </h2>
-            <button onClick={() => onSavePlantToGarden(plant)}>SAVE TO MY GARDEN</button>
-            <a
-              href="https://www.thesill.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                marginLeft: "10px",
-                textDecoration: "none",
-                backgroundColor: "#4CAF50",
-                color: "white",
-                padding: "10px 20px",
-                borderRadius: "4px",
-              }}
-            >
-              Shop
-            </a>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <button onClick={() => onSavePlantToGarden(plant)}>SAVE TO MY GARDEN</button>
+
+              <a
+                href={`https://www.thesill.com/search?q=${encodeURIComponent(plant.name)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: "none",
+                  backgroundColor: "#4CAF50",
+                  color: "white",
+                  padding: "10px 20px",
+                  borderRadius: "4px",
+                }}
+              >
+                SHOP
+              </a>
+            </div>
           </div>
         ))}
     </div>
