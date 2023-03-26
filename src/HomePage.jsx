@@ -35,6 +35,7 @@ export function HomePage() {
         alignItems: "flex-start",
         height: "100vh",
         padding: "20px",
+        backgroundColor: "#e6ffe6",
       }}
     >
       <div style={{ position: "sticky", top: "0", marginRight: "20px" }}>
@@ -45,24 +46,54 @@ export function HomePage() {
           scrolling="no"
         ></iframe>
       </div>
-      <p>Welcome to Trellis</p>
-      <p>To add plants to your garden check out our plant repsoitory</p>
+
+      <p
+        style={{
+          border: "2px solid #333",
+          borderRadius: "8px",
+          background: "linear-gradient(to bottom, #3CB371, #00FFFF)",
+          padding: "100px",
+          marginTop: "20px",
+        }}
+      >
+        Watering List <p></p>
+        <a
+          href="https://www.enrole.com/nybg/jsp/index.jsp?locationFilter=ONLINE"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          List Here
+        </a>
+      </p>
+
       {weatherData && (
         <div
           style={{
             border: "2px solid #333",
             borderRadius: "8px",
-            backgroundColor: "#a3e0ff",
-            padding: "20px",
+            // backgroundColor: "#a3e0ff",
+            background: "linear-gradient(to bottom, #3CB371, #00FFFF)",
+            padding: "100px",
             marginTop: "20px",
           }}
         >
-          <h3>Today's Weather:</h3>
-
+          <h3>Today's Weather</h3>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
           <p>Location: {weatherData.location.name} </p>
           <p> Current Temp: {weatherData.current.temp_f}</p>
-          <p> UV Index: {weatherData.current.uv}</p>
           <p> Feels Like: {weatherData.current.feelslike_f}</p>
+          <p> UV Index: {weatherData.current.uv}</p>
+          <p>Wind MPH: {weatherData.current.wind_mph}</p>
         </div>
       )}
     </div>

@@ -46,7 +46,22 @@ export function Login(props) {
         </div>
       ) : (
         <>
-          <h1>Login</h1>
+          {/* <h1>Login</h1> */}
+
+          <h1
+            style={{
+              fontSize: "56px",
+              textAlign: "left",
+              marginBottom: "10px",
+              border: "2px solid #333",
+              borderRadius: "8px",
+              padding: "10px",
+              backgroundColor: "#e6ffe6",
+            }}
+          >
+            Login
+          </h1>
+
           {message && <p>{message}</p>}
           <ul>
             {errors.map((error) => (
@@ -57,9 +72,13 @@ export function Login(props) {
             <div>
               Email: <input name="email" type="email" />
             </div>
+            <p></p>
+            <p></p>
             <div>
               Password: <input name="password" type="password" />
             </div>
+            <p></p>
+            <p></p>
             <button type="submit">Login</button>
           </form>
         </>

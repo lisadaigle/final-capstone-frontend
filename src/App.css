@@ -45,3 +45,7 @@
 .logout-link  {
   float: right;
 }
+
+.navbar-green {
+  background-color: #3CB371;
+}

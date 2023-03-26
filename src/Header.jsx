@@ -4,7 +4,8 @@ import { LogoutLink } from "./LogoutLink";
 export function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-light">
+      {/* <nav className="navbar navbar-expand-lg bg-light"> */}
+      <nav className="navbar navbar-expand-lg navbar-green">
         <div className="container-fluid">
           <a className="navbar-brand" href="/" style={{ fontSize: "36px", fontWeight: "bold" }}>
             TRELLIS
@@ -42,7 +43,7 @@ export function Header() {
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/signup">
-                      SIGNUP
+                      SIGN UP
                     </a>
                   </li>
                 </>
@@ -55,7 +56,7 @@ export function Header() {
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="/hello">
-                      SCHEDULE
+                      DASHBOARD
                     </a>
                   </li>
 
