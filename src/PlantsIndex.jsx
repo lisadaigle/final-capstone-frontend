@@ -3,6 +3,8 @@ import axios from "axios";
 
 export function PlantsIndex(props) {
   const [searchFilter, setNameSearchFilter] = useState("");
+  const [searchWaterFilter, setWaterSearchFilter] = useState("");
+  const [searchSunFilter, setSunSearchFilter] = useState("");
 
   const loggedIn = localStorage.jwt !== undefined;
 
@@ -45,9 +47,9 @@ export function PlantsIndex(props) {
         overflowY: "auto",
       }}
     >
-      <h1>All Plants</h1>
+      <h1>Plant Repository</h1>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <span style={{ fontSize: "20px", marginRight: "10px" }}>Search by name:</span>
+        <span style={{ fontSize: "20px", marginRight: "10px" }}>Filter by name:</span>
         <input
           type="text"
           value={searchFilter}
@@ -57,6 +59,67 @@ export function PlantsIndex(props) {
         />
       </div>
 
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <span style={{ fontSize: "20px", marginRight: "10px" }}>Filter by watering frequency (days):</span>
+        <input
+          type="text"
+          value={searchWaterFilter}
+          onChange={(event) => setWaterSearchFilter(event.target.value)}
+          list="titles"
+          style={{ borderBottom: "2px solid black", fontSize: "16px" }}
+        />
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <span style={{ fontSize: "20px", marginRight: "10px" }}>Filter by sun needs:</span>
+        <input
+          type="text"
+          value={searchSunFilter}
+          onChange={(event) => setSunSearchFilter(event.target.value)}
+          list="titles"
+          style={{ borderBottom: "2px solid black", fontSize: "16px" }}
+        />
+      </div>
+
+      <table style={{ border: "1px solid black" }}>
+        <thead>
+          <tr>
+            <th>Amount of Sun</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Full Shade </td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Part to Full Shade </td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Part Shade </td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>
+              <td>Full Sun to Part Shade </td>
+            </td>
+            <td>
+              <td>4</td>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <td>Full Sun</td>
+            </td>
+            <td>
+              <td>5</td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <datalist id="titles">
         <div></div>
         {props.plants.map((plant) => (
@@ -65,8 +128,8 @@ export function PlantsIndex(props) {
       </datalist>
       {props.plants
         .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
-        .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
-        .filter((plant) => plant.name.toLowerCase().includes(searchFilter.toLowerCase()))
+        .filter((plant) => plant.days_to_water.toString().includes(searchWaterFilter.toString()))
+        .filter((plant) => plant.amount_of_sun.toString().includes(searchSunFilter.toString()))
         .map((plant) => (
           <div key={plant.id}>
             <h2 style={{ textAlign: "center", fontWeight: "bold" }}>{plant.name}</h2>

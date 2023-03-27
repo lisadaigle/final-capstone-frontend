@@ -7,12 +7,10 @@ export function MyGarden(props) {
   const handleSubmit = async (e, gardenPlant) => {
     e.preventDefault();
     const lastWatered = e.target.lastWatered.value;
-    console.log("Last watered:", lastWatered); ////testing this
     const response = await axios.post("http://localhost:3000/watering_schedule.json", {
       plant_id: gardenPlant.id,
       last_watered: lastWatered,
     });
-
     setSchedule(response.data);
   };
 
