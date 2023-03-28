@@ -11,7 +11,7 @@ import { Welcome } from "./Welcome";
 
 export function Content() {
   const [plants, setPlants] = useState([]);
-  const [gardenPlants, setGardenPlants] = useState([]); // this is new
+  const [gardenPlants, setGardenPlants] = useState([]);
 
   const handleIndexPlants = () => {
     console.log("handleIndexPlants");
@@ -23,18 +23,25 @@ export function Content() {
 
   const handleGardenPlants = () => {
     console.log("handleGardenPlants");
-    axios.get("http://localhost:3000/carted_plants.json").then((response) => {
-      console.log(response.data);
-      setGardenPlants(response.data);
-    }); ///this is new
+    axios
+      .get("http://localhost:3000/carted_plants.json", {
+        headers: {
+          Authorization: `Bearer ${localStorage.jwt}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setGardenPlants(response.data);
+      })
+      .catch((error) => {
+        console.log("Failed to fetch garden plants", error);
+      });
   };
-
-  useEffect(handleIndexPlants, []);
 
   useEffect(() => {
     handleIndexPlants();
     handleGardenPlants();
-  }, []); //this is new
+  }, []);
 
   return (
     <div className="container">
@@ -42,7 +49,7 @@ export function Content() {
         <Route path="logout" element={<LogoutLink />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mygarden" element={<MyGarden gardenPlants={gardenPlants} />} />
-        <Route path="/mygarden" element={<MyGarden />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Welcome />} />
         <Route path="/hello" element={<HomePage />} />

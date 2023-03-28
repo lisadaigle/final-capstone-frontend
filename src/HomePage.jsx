@@ -3,6 +3,7 @@ import axios from "axios";
 
 export function HomePage() {
   const [weatherData, setWeatherData] = useState(null);
+  const [solarCalcLink, setSolarCalcLink] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -19,6 +20,9 @@ export function HomePage() {
       try {
         const response = await axios.request(options);
         setWeatherData(response.data);
+        setSolarCalcLink(
+          `https://suncalc.org/#/${response.data.location.lat},${response.data.location.lon},18/2023.03.28/13:15/324.0/2`
+        );
       } catch (error) {
         console.error(error);
       }
@@ -31,45 +35,80 @@ export function HomePage() {
     <div
       style={{
         display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "flex-start",
-        height: "100vh",
+        flexDirection: "column",
+        gap: "20px",
+        justifyContent: "center",
+        alignItems: "center",
         padding: "20px",
         backgroundColor: "#e6ffe6",
+        overflowY: "auto",
       }}
     >
-      <div style={{ position: "sticky", top: "0", marginRight: "20px" }}>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?height=450&wkst=1&bgcolor=%237CB342&ctz=America%2FNew_York&showTitle=1&title=%20Schedule%20&showPrint=0&showDate=1&showNav=1&showCalendars=0&showTz=1&src=YmVhY29uZ2F0aGVyc0BnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679"
-          style={{ border: "solid 1px #777", width: "450px", height: "450px", margin: "0 auto" }}
-          frameBorder="0"
-          scrolling="no"
-        ></iframe>
-      </div>
+      <h1 style={{ textAlign: "center" }}>Let's Grow Together</h1>
+      <p
+        style={{
+          border: "2px solid #333",
+          borderRadius: "8px",
+          background: "linear-gradient(to bottom, #FFC107, #FF5733)",
+          padding: "20px",
+          marginTop: "10px",
+          width: "65%",
+          textAlign: "center",
+        }}
+      >
+        <div>
+          {solarCalcLink && (
+            <a
+              href={solarCalcLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Sun Tracker
+            </a>
+          )}
+        </div>
+      </p>
 
       <p
         style={{
           border: "2px solid #333",
           borderRadius: "8px",
-          background: "linear-gradient(to bottom, #3CB371, #00FFFF)",
-          padding: "100px",
-          marginTop: "20px",
+          background: "linear-gradient(to bottom, #FF69B4, #9B30FF)",
+          padding: "20px",
+          marginTop: "10px",
+          width: "65%",
+          textAlign: "center",
         }}
       >
-        Watering List <p></p>
-        <a
-          href="https://www.enrole.com/nybg/jsp/index.jsp?locationFilter=ONLINE"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          List Here
-        </a>
-      </p>
+        <div>
+          {solarCalcLink && (
+            <a
+              href="http://localhost:5173/plants"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Find Plants
+            </a>
+          )}
+        </div>
+        <p></p>
+        <p></p>
 
+        <div>
+          {solarCalcLink && (
+            <a
+              href="http://localhost:5173/mygarden"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Your Garden{" "}
+            </a>
+          )}
+        </div>
+      </p>
       {weatherData && (
         <div
           style={{
@@ -77,11 +116,13 @@ export function HomePage() {
             borderRadius: "8px",
             // backgroundColor: "#a3e0ff",
             background: "linear-gradient(to bottom, #3CB371, #00FFFF)",
-            padding: "100px",
-            marginTop: "20px",
+            padding: "20px",
+            marginTop: "10px",
+            width: "65%",
+            textAlign: "center",
           }}
         >
-          <h3>Today's Weather</h3>
+          <h1>WEATHER</h1>
           <p></p>
           <p></p>
           <p></p>
@@ -89,13 +130,39 @@ export function HomePage() {
           <p></p>
           <p></p>
           <p></p>
-          <p>Location: {weatherData.location.name} </p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <h4>{weatherData.location.name},</h4>
+          <h4>{weatherData.location.region}</h4>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p>{weatherData.location.localtime} </p>
           <p> Current Temp: {weatherData.current.temp_f}</p>
           <p> Feels Like: {weatherData.current.feelslike_f}</p>
           <p> UV Index: {weatherData.current.uv}</p>
           <p>Wind MPH: {weatherData.current.wind_mph}</p>
         </div>
       )}
+      <div style={{ position: "sticky", marginTop: "10px", marginRight: "20px", width: "65%", textAlign: "center" }}>
+        <iframe
+          src="https://calendar.google.com/calendar/embed?height=450&wkst=1&bgcolor=%237CB342&ctz=America%2FNew_York&showTitle=1&title=%20Schedule%20&showPrint=0&showDate=1&showNav=1&showCalendars=0&showTz=1&src=YmVhY29uZ2F0aGVyc0BnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679"
+          style={{ border: "solid 1px #777", width: "100%", height: "650px", margin: "0 auto" }}
+          frameBorder="0"
+          scrolling="no"
+        ></iframe>
+      </div>
     </div>
   );
 }

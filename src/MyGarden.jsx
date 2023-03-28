@@ -7,12 +7,10 @@ export function MyGarden(props) {
   const handleSubmit = async (e, gardenPlant) => {
     e.preventDefault();
     const lastWatered = e.target.lastWatered.value;
-    console.log("Last watered:", lastWatered); ////testing this
     const response = await axios.post("http://localhost:3000/watering_schedule.json", {
       plant_id: gardenPlant.id,
       last_watered: lastWatered,
     });
-
     setSchedule(response.data);
   };
 
@@ -31,6 +29,7 @@ export function MyGarden(props) {
       }}
     >
       <h1>My Garden</h1>
+
       {props.gardenPlants.map((gardenPlant) => (
         <div key={gardenPlant.id}>
           <h2>{gardenPlant.name}</h2>
@@ -53,6 +52,19 @@ export function MyGarden(props) {
               Next watering: <strong>{schedule[gardenPlant.id]}</strong>
             </p>
           )}
+          <a
+            href={`https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20230327T131500Z%2F20230327T134500Z&details=%20${
+              schedule[gardenPlant.id]
+            }%20Water%20every%20${
+              gardenPlant.days_to_water
+            }%20days.&location=357%20Blackberry%20Hill%20Road%20&text=%20${gardenPlant.name}%20:%20water`}
+            title="Save Event in my Calendar"
+            target="_blank"
+          >
+            Add to Calendar
+          </a>
+          <p></p>
+          <button onClick={(e) => handleDelete(e, gardenPlant)}>Delete</button>
         </div>
       ))}
     </div>
