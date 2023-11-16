@@ -4,6 +4,7 @@ import axios from "axios";
 export function HomePage() {
   const [weatherData, setWeatherData] = useState(null);
   const [solarCalcLink, setSolarCalcLink] = useState("");
+  const [showImage, setShowImage] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -93,6 +94,7 @@ export function HomePage() {
             </a>
           )}
         </div>
+
         <p></p>
         <p></p>
 
@@ -109,6 +111,35 @@ export function HomePage() {
           )}
         </div>
       </p>
+      <p
+        style={{
+          border: "2px solid #333",
+          borderRadius: "8px",
+          background: "linear-gradient(to bottom, #87CEFA, #00008B)",
+          padding: "20px",
+          marginTop: "10px",
+          width: "65%",
+          textAlign: "center",
+        }}
+      >
+        <p></p>
+        <p></p>
+
+        <div>
+          <a href="#" onClick={() => setShowImage(!showImage)} style={{ color: "white", fontWeight: "bold" }}>
+            Click here for your digital plant{" "}
+          </a>
+        </div>
+
+        {showImage && (
+          <img
+            src="https://img.freepik.com/free-vector/flat-design-flower-pixel-art-illustration_23-2149294235.jpg?w=826&t=st=1679984836~exp=1679985436~hmac=6573f2682a588dd87d458450c460b47c9e710faf894505bc690f4a865f2dde76"
+            alt="digital plant"
+            style={{ width: "100%", height: "100%" }}
+          />
+        )}
+      </p>
+
       {weatherData && (
         <div
           style={{

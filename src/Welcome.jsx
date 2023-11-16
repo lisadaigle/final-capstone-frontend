@@ -25,8 +25,8 @@ export function Welcome() {
       </h1>
       <div style={{ position: "center", alignSelf: "center" }}>
         <img
-          src="https://cdn.shopify.com/s/files/1/0045/5340/8576/articles/Living_Room_Up.jpg?v=1624134760"
-          style={{ width: "1000px", height: "auto" }}
+          src="https://cdn.discordapp.com/attachments/1110005785938890773/1174568518071627847/pestogirl_cartoon_indoor_plants_in_an_apartment_mary_blair_styl_27fea27e-7b5c-4088-95cb-2564c41943fd.png?ex=6568112d&is=65559c2d&hm=3dbf37ff23d1ca68672ffc7277140a8f4d7fbf2b2bd33dbce11099917e53b84c&"
+          style={{ width: "1200px", height: "auto" }}
         />
       </div>
     </div>
